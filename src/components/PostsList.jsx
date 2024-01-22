@@ -5,34 +5,31 @@ import { NewPost } from "./NewPost";
 import style from "./PostList.module.css";
 import { Modal } from "./Modal";
 
+// eslint-disable-next-line react/prop-types
 export const PostsList = ({ isPosting, onStopPosting }) => {
-  const [author, setAuthor] = React.useState("");
-  const [post, setPost] = React.useState("");
+  const [posts, setPosts] = React.useState([]);
 
-  function onChangeHandler(event) {
-    setPost(event.target.value);
+  function addPostHandler(postData) {
+    setPosts((existingPosts) => [postData, ...existingPosts]);
   }
-  function onChangeAuthorHandler(event) {
-    setAuthor(event.target.value);
-  }
+
   return (
     <>
       {isPosting && (
         <Modal onClose={onStopPosting}>
-          <NewPost
-            onBodyChange={onChangeHandler}
-            onAuthorChange={onChangeAuthorHandler}
-          />
+          <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
         </Modal>
       )}
-
-      <ul className={style.posts}>
-        <Post author={author} body={post} />
-        <Post
-          author="Nayara"
-          body="Check out the full Next.js and React.js course!"
-        />
-      </ul>
+      {posts.length > 0 && (
+        <ul className={style.posts}>
+          {posts.map((post) => (
+            <Post key={post.body} author={post.author} body={post.body} />
+          ))}
+        </ul>
+      )}
+      {posts.length === 0 && (
+        <div style={{ textAlign: "center" }}>Ainda não existem posts.</div>
+      )}
     </>
   );
 };
