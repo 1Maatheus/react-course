@@ -4,7 +4,7 @@ import { PostsList } from "./components/PostsList";
 
 function App() {
   return (
-    <main className="flex bg-gradient-to-b text-center from-[#321D51] to-[#6C5185] h-screen">
+    <main className="bg-gradient-to-b text-center from-[#321D51] to-[#6C5185] min-h-screen">
       <PostsList />
     </main>
   );
