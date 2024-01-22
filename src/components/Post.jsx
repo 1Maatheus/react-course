@@ -2,11 +2,11 @@
 import React from "react";
 import style from "./Post.module.css";
 
-export const Post = (props) => {
+export const Post = ({ author, body }) => {
   return (
     <li className={style.post}>
-      <p className={style.author}>{props.author}</p>
-      <p className={style.text}>{props.body}</p>
+      <p className={style.author}>{author}</p>
+      <p className={style.text}>{body}</p>
     </li>
   );
 };

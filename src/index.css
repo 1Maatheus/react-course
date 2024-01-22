@@ -2,32 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-.anime {
-  animation: animate-in 1s ease-out forwards;
-}
-
-:root {
-  line-height: 24px;
-}
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
+* {
   box-sizing: border-box;
 }
 
-ul,
-li {
-  list-style: none;
+:root {
+  min-height: 100vh;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  background-image: radial-gradient(ellipse at top left, #7f50e4, #4c05d0);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  max-width: 100%;
+body {
+  margin: 0;
+  color: #e6ddf9;
 }

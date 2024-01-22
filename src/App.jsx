@@ -1,12 +1,25 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { PostsList } from "./components/PostsList";
+import MainHeader from "./components/MainHeader";
 
 function App() {
+  const [modal, setModal] = React.useState(false);
+
+  function showModalHandler() {
+    setModal(true);
+  }
+
+  function hideModal() {
+    setModal(false);
+  }
   return (
-    <main className="bg-gradient-to-b text-center from-[#321D51] to-[#6C5185] min-h-screen">
-      <PostsList />
-    </main>
+    <>
+      <MainHeader onCreatePost={showModalHandler} />
+      <main>
+        <PostsList isPosting={modal} onStopPosting={hideModal} />
+      </main>
+    </>
   );
 }
 

@@ -2,13 +2,32 @@
 import React from "react";
 import { Post } from "./Post";
 import { NewPost } from "./NewPost";
+import style from "./PostList.module.css";
+import { Modal } from "./Modal";
 
-export const PostsList = () => {
+export const PostsList = ({ isPosting, onStopPosting }) => {
+  const [author, setAuthor] = React.useState("");
+  const [post, setPost] = React.useState("");
+
+  function onChangeHandler(event) {
+    setPost(event.target.value);
+  }
+  function onChangeAuthorHandler(event) {
+    setAuthor(event.target.value);
+  }
   return (
     <>
-      <NewPost />
-      <ul className="max-w-[50rem] my-4 mx-auto py-4 px-0 grid gap-4 grid-cols-[repeat(3,30%)] justify-center">
-        <Post author="Matheus" body="React.js is awesome!" />
+      {isPosting && (
+        <Modal onClose={onStopPosting}>
+          <NewPost
+            onBodyChange={onChangeHandler}
+            onAuthorChange={onChangeAuthorHandler}
+          />
+        </Modal>
+      )}
+
+      <ul className={style.posts}>
+        <Post author={author} body={post} />
         <Post
           author="Nayara"
           body="Check out the full Next.js and React.js course!"
